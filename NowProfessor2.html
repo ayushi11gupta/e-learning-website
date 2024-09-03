@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NowProfessor</title>
+    <style>
+        body, h1, p, button, input {
+            background-color: #3EA99F;
+            margin: 0;
+            padding: 0;
+            border: none;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #00563f;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo img {
+            height: 60px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar {
+            flex: 1;
+            margin: 0 100px;
+            position: relative;
+        }
+
+        .search-bar input[type="text"] {
+            width: calc(100% - 40px);
+            padding: 8px 30px 8px 10px;
+            border-radius: 20px;
+            border: 1px solid #000000;
+            background-color: #ffffffc2;
+            font-size: 14px;
+        }
+
+        .search-bar img {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            width: 16px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .browse {
+            display: flex;
+        }
+
+        .browse .browse-btn {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin-right: 10px;
+        }
+
+        .browse .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #3EA99F;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .browse .dropdown a {
+            color: whitesmoke;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .browse .dropdown a:hover {
+            background-color: #00563f;
+        }
+
+        .browse:hover .dropdown {
+            display: block;
+        }
+
+        .user-controls button {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-controls button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .button {
+            background-color: transparent;
+            color: white;
+            border: 4px solid #00563f;
+            padding: 10px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .button:hover {
+            background-color: rgba(6, 138, 65, 0.295);
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .head-container {
+	          margin-top: 70px;
+	          display: flex;
+	          flex-wrap: wrap;
+	          align-items: center;
+	          justify-content: space-around;
+            }
+
+       .quote {
+	         width: 50%;
+           text-align: center;
+	        transform: translateY(-50px);
+           }
+
+      .quote h5 {
+	        margin-top: 20px;
+	        color: rgb(58, 57, 57);
+	        line-height: 20px;
+           }
+
+      .quote p {
+	       font-size: 50px;
+	       color: #2e2e2e;
+          }
+
+      .svg-image img{
+	      width: 500px;
+        height: 350px;
+        overflow: hidden;
+        object-fit: cover;
+	      transition: left 0.3s ease;
+        border-radius: 20px;
+        border: 2px solid #00563f;
+        }
+
+        .svg-container svg {
+            display: block;
+        }
+
+          @keyframes slideImage {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-100% - 5px));
+            }
+        }
+
+        .menu ul {
+    display: flex;
+    flex-direction: row;
+        }
+
+        .menu ul li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+       }
+
+       .menu ul li:hover a {
+    background: #fff;
+    color: #00563f;
+       }
+
+       .menu ul li a {
+    color: #FFF;
+    width: 100%;
+    font-size: 27px;
+    text-decoration: none;
+    padding: 15px 0px;
+       }
+
+       .menu button a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right:140px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+      }
+
+.line {
+            width: 100%;
+            height: 5px;
+            background-color: #00563f;
+            margin-top: 10px;
+        }
+
+        .diffSection {
+    margin-top: 0; 
+    margin-bottom: 0; 
+}
+
+        .about-content {
+     max-width: 1000px; 
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; 
+    box-sizing: border-box;
+}
+
+
+      .side-text {
+	width: 50%;
+	background: #00563f;
+	box-shadow: 2px 0 100px rgba(0,0,0,0.3);
+	border-radius: 5px;
+	text-align: justify;
+	opacity: 0;
+	transform: translateX(-100px);
+	transition: opacity 1s ease, transform 1s ease;
+}
+
+.side-text.side-text-appear {
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+.side-image img {
+	width: 90%;
+	border-radius: 5px;
+	transform: translateX(100px);
+	opacity: 0;
+	transition: opacity 1s ease, transform 1s ease;
+}
+
+.side-image.sideImage-appear img {
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+.extra {
+	width: 100%;
+}
+
+.extra p {
+    flex: 100%;
+	padding: 30px;
+	padding-bottom: 150px;
+	font-size: 50px;
+	text-align: center;
+	color: #000000;
+	background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.7)),url("https://business.adobe.com/blog/how-to/media_13deeef34ac69c4f1b258315e43ea4c7c128fb175.jpeg?width=1200&format=pjpg&optimize=medium");
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: cursive;
+	z-index: -9;
+}
+
+.smbox {
+	display: flex;
+	flex-wrap: wrap;
+    transform: translateY(-100px);
+	justify-content: center;
+}
+
+.smbox span {
+	margin: 1%;
+	background: #00563f;
+	box-shadow: inset 0px 0px 25px rgba(0, 0, 0, 0),
+						0 0 40px rgb(27, 27, 27);
+	border-radius: 10px;
+	padding: 30px 30px;
+	cursor: pointer;
+}
+
+.smbox span:hover {
+	transform: scale(1.3);
+	transition: .5s ease;
+}
+
+.smbox .data {
+	font-size: 80px;
+	color: #d6d5d5;	
+}
+
+.smbox .det {
+	font-size: 20px;
+	color: #3EA99F;
+	font-family: cursive;
+}
+
+.popular-courses {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.course {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.course:hover {
+    transform: scale(1.1);
+}
+
+.course img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.course-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    box-sizing: border-box;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.course:hover .course-info {
+    opacity: 1;
+}
+
+.totalcard {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 50px;
+}
+
+.totalcard .card {
+	margin: 10px;
+	width: 220px;
+	border-radius: 10px;
+	background: #fff;
+}
+
+.totalcard .card{
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.4),
+					0 0 10px rgba(0,0,0,0.3);
+}
+
+.card:nth-child(1){
+	border-top: 5px solid green;
+}
+
+.card:nth-child(2){
+	border-top: 5px solid blue;
+}
+
+.card:nth-child(3){
+	border-top: 5px solid green;
+}
+
+.card:nth-child(4){
+	border-top: 5px solid blue;
+}
+
+.card:nth-child(1):hover {
+	box-shadow: inset 0px 0px 10px rgba(0,255,0,0.5),
+				1px 1px 30px rgba(0,255,0,0.5);
+}
+
+.card:nth-child(2):hover {
+	box-shadow: inset 0px 0px 10px rgba(0,0,255,0.5),
+				1px 1px 30px rgba(0,0,255,0.5);
+}
+
+.card:nth-child(3):hover {
+	box-shadow: inset 0px 0px 10px rgba(0,255,0,0.5),
+				1px 1px 30px rgba(0,255,0,0.5);
+}
+
+.card:nth-child(4):hover {
+	box-shadow: inset 0px 0px 10px rgba(0,0,255,0.5),
+				1px 1px 30px rgba(0,0,255,0.5);
+}
+
+.totalcard .card img {
+	width: 100px;
+	height: 100px;
+	margin-top: 5px;
+	cursor: pointer;
+	border-radius: 50px;
+	transition-duration: .8s;
+}
+
+.totalcard .card img:hover {
+	transform: scale(3.5);
+	border-radius: 0;
+	box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+#detail p{
+	font-size: 15px;
+	line-height: 25px;
+	font-variant: small-caps;
+	text-align: center;
+	margin: 25px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
+#detail button {
+	outline: none;
+	border-radius: 10px;
+	border-style: none;
+	border: 1px solid black;
+	padding: 9px 25px;
+	cursor: pointer;
+	transition-duration: .4s;
+}
+
+#detail a {
+	bottom: 80px;
+	text-decoration: none;
+	margin-bottom: 30px;
+	margin-top: 20px;
+	margin-left: 90px;
+	align-self: center;
+}
+
+.btn-roshan:hover {
+	background: rgba(0,255,0,0.7);
+	color: #fff;
+}
+
+.btn-roshan2:hover {
+	background: rgba(0,0,255,0.5);
+	color: #fff;
+}
+
+.btn-roshan3:hover {
+	background: rgba(0,255,0,0.7);
+	color: #fff;
+}
+
+.btn-roshan4:hover {
+	background: rgba(0,255,0,0.7);
+	color: #fff;
+}
+
+.card-title {
+	font-size: 17px;
+	color: #343A40;
+	padding: 20px;
+	font-weight: 700;
+}
+
+#makeitfull {
+	display: flex;
+	justify-content: center;
+	transform: translateY(35px);
+}
+#makeitfull img {
+	width: 50px;
+}
+.review {
+	background: #F8F8F8;
+	width: 100%;
+}
+.rev-container {
+	padding: 10px 10%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.rev-container .rev-card {
+	width: 400px;
+	height: 240px;
+	margin-bottom: 40px;
+	background: #fff;
+	display: flex;
+	padding: 10px;
+	box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+}
+.rev-card:hover {
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+}
+.identity {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 10px;
+}
+.identity img {
+	width: 120px;
+	height: 120px;
+	transition-duration: .8s;
+	border-radius: 50%;
+}
+.identity img:hover {
+	transform: scale(2.2);
+	border-radius: 0px;
+	box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+.identity p {
+	width: 150px;
+	font-weight: bold;
+	color: #2E3D49;
+	text-align: center;
+}
+.identity h6 {
+	width: 150px;
+	text-align: center;
+}
+.identity .rating img {
+	width: 12px;
+	height: 12px;
+	margin-right: 5px;
+}
+.rev-cont {
+	overflow: hidden;
+}
+.rev-cont #title {
+	padding: 10px;
+	color: #2E3D49;
+	font-weight: bold;
+}
+.rev-cont #content {
+	padding: 10px;
+	font-size: .9em;
+	color: #2E3D49;
+	line-height: 22px;
+	text-align: justify;
+}
+
+.faq {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .faq-item {
+    margin-bottom: 20px;
+  }
+
+  .faq-question {
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    background-color: #00563f;
+    border-radius: 5px;
+  }
+
+  .dropdown-arrow {
+    float: right;
+  }
+
+  .faq-answer {
+    display: none;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff9c;
+  }
+
+  .faq-answer.show {
+    display: block;
+  }
+
+  footer {
+    color: #E5E8EF;
+    background: #000D;
+    padding: 50px 0;
+}
+
+footer .footer-container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+}
+
+footer .social-media img {
+    width: 22px;
+}
+
+footer .logo {
+    width: 180px;
+    color: #fff;
+}
+
+footer .social-media a {
+    margin-right: 10px;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+footer .right-col h1 {
+    font-size: 26px;
+    color: #fff;
+}
+
+footer .border {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #FA4B37, #DF2771);
+    margin: 2px;
+}
+
+footer .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer input::placeholder {
+    color: white !important;
+}
+
+footer .txtb {
+    flex: 1;
+    padding: 18px 40px;
+    font-size: 16px;
+    background: #343A40;
+    border: none;
+    font-weight: 700;
+    outline: none;
+    border-radius: 5px;
+    min-width: 260px;
+    margin-top: 20px;
+    color: white;
+}
+
+footer .btn {
+    margin-top: 20px;
+    padding: 18px 40px;
+    font-size: 16px;
+    color: #f1f1f1;
+    background: linear-gradient(to right, #FA4B37, #DF2771);
+    border: none;
+    font-weight: 700;
+    outline: none;
+    border-radius: 5px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: opacity .3s linear;
+}
+
+footer .btn:hover {
+    opacity: .7;
+}
+
+.footer-line {
+  border-top: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.h4 {
+    color: white;
+}
+
+
+
+/*EXTRA CSS*/
+@media screen and (max-width: 960px) {
+	.footer-container {
+		max-width: 600px;
+	}
+
+	.logo {
+		transition: 1s;
+		margin-left: 30%;
+	}
+
+	nav ul, .srch, .get-started{
+		display: none;
+	}
+
+	nav {
+		padding-bottom: 20px;
+		border-bottom: 1px solid #0005;
+	}
+
+	.quote p, .quote h5, .play {
+		justify-content: center;
+		text-align: center;
+	}
+	.quote p {
+		font-size: 30px;
+	}
+	.service-container .right-side img {
+		width: 90%;
+	}
+	.title {
+		margin-top: 0px;
+	}
+	
+}
+@media screen and (max-width: 700px) {
+	footer .btn{
+		margin: 0;
+		width: 100%;
+		margin-top: 20px;
+	}
+	.svg-image img {
+		width: 90%;
+		margin: 20px;
+	}
+}
+
+@media screen and (max-width: 1000px) {	
+	.feedbox form input, .feedbox form .fname{
+		width: 100%;
+	}
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <a href="NowProfessor.html"><img src="C:\Users\HP\OneDrive - sicsr.ac.in\Desktop\website3\LearnEd_E-learning_Website-master\NowProfessor\Logo.jpg" alt="NowProfessor"></a>
+        </div>
+        <div class="search-bar">
+           
+          <input id="search-box" type="text" class="form-control search-box" value="" placeholder="Search Courses" autocomplete="on" required="">           
+                      <img src="https://static-00.iconduck.com/assets.00/search-icon-2048x2048-3akpq6z9.png" class="search-icon" alt="Search icon" title="Search icon" >
+        </div>
+        <script>
+    function search() {
+        var searchTerm = document.getElementById('search-box').value;
+        console.log('Searching for: ' + searchTerm);
+        window.location.href = 'search-results.html?query=' + encodeURIComponent(searchTerm);
+    }
+
+    document.getElementById("search-box").addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            search();
+        }
+    });
+</script>
+        <div class="browse">
+          <button class="browse-btn">Browse</button>
+          <div class="dropdown">
+              <a href="Playlist.html">HTML tutorial</a>
+              <a href="Playlist.html">CSS tutorial</a>
+              <a href="Playlist.html">JS tutorial</a>
+              <a href="Playlist.html">Boostrap tutorial</a>
+              <a href="Playlist.html">JQuery tutorial</a>
+              <a href="Playlist.html">SASS tutorial</a>
+            </div>
+          </div>
+<br><br>
+        <div class="user-controls">
+            <button onclick="window.location.href = 'Login.html';">Login</button>
+            <button onclick="window.location.href = 'Signup.html';">Sign up</button>
+            <button onclick="window.location.href = 'Contactus.html';">📞</button>
+        </div>
+    </header>
+    <hr>
+    <div class="head-container">
+			<div class="quote">
+				<p>Develop valuable skills with NowProfessor's free e-learning programs and certifications</p>
+				<h5>Live expert sessions, and 1k+ free courses available.  Join thousands of learners today!
+        </h5>
+
+        <div class="button-container">
+            <button class="button" onclick="window.location.href = 'Courses.html';">Be a Learner today.</button>
+      </div>
+			</div>
+
+
+			<div class="svg-image" id="slideshow">  
+        <img src="https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2023/12/teenstechfeatured.png" alt="Slideshow Image">
+      </div>
+      
+    <script>
+
+      var images = [
+          "https://www.pewresearch.org/internet/wp-content/uploads/sites/9/2023/12/teenstechfeatured.png",
+          "https://daily.jstor.org/wp-content/uploads/2016/08/students_on_tablets_1050x700.jpg",
+          "https://www.remc.org/downloads/21students/bannerpic.jpeg",
+          "https://ed.stanford.edu/sites/default/files/styles/max_width_-_1200px/public/news/image/shutterstock_1860471418.jpg?itok=Kcn4Y2Ii",
+          "https://blog.adobe.com/en/publish/2021/11/17/media_1a9437bf4ebddb2a618b37d20080fe2bc0b49fb05.jpeg?width=750&format=jpeg&optimize=medium"
+      ];
+
+      var currentImageIndex = 0;
+      var slideshowElement = document.getElementById("slideshow");
+
+      function nextSlide() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        slideshowElement.querySelector('img').style.left = "-100%";
+            setTimeout(function() {
+              slideshowElement.querySelector('img').src = images[currentImageIndex];
+                slideshowElement.querySelector('img').style.left = "0";
+            }, 500);
+      }
+
+      setInterval(nextSlide, 1500);
+  </script>
+        </div>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="menu">
+        <ul>
+            <li><button><a href="#about_section"><u>About</u></a></button></li>
+            <li><button><a href="#portfolio_section"><u>Portfolio</u></a></button></li>
+            <li><button><a href="#team_section"><u>Team</u></a></button></li>
+            <li><button><a href="#contactus_section"><u>Reviews</u></a></button></li>
+            <li><button><a href="#feedback_section"><u>Feedback</u></a></button></li>
+        </ul>
+    </div>
+    
+    <div class="line"></div> 
+
+    <center><p style="font-size: 50px; margin: 0; padding: 10px 0;">Explore our popular courses</p></center>
+    <br>
+    <div class="popular-courses">
+        <div class="course">
+            <img src="images/thumb-1.png" alt="HTML tutorial">
+            <div class="course-info">
+                <h3>HTML</h3>
+                <p>Discover the basics of HTML with us.</p>
+            </div>
+        </div>
+        <div class="course">
+            <img src="images/thumb-2.png" alt="CSS tutorial">
+            <div class="course-info">
+                <h3>CSS</h3>
+                <p>Discover the basics of CSS with us.</p>
+            </div>
+        </div>
+        <div class="course">
+            <img src="images/thumb-3.png" alt="JS  tutorial">
+            <div class="course-info">
+                <h3>JS</h3>
+                <p>Discover the basics of JS with us.</p>
+            </div>
+        </div>
+        <div class="course">
+            <img src="images/thumb-4.png" alt="Boostrap tutorial">
+            <div class="course-info">
+                <h3>Boostrap</h3>
+                <p>Discover the basics of BS with us.</p>
+            </div>
+        </div>
+    </div>
+<br>
+            <a class="btn" href="Courses.html">
+          <center><button class="button">See more courses</button></center></a>
+          <br>
+          <a class="btn" href="Certificate.html">
+          <center><button class="button">Get your certificate</button></center></a>
+<br><br>
+
+
+<br><br>
+    <div class="diffSection" id="about_section">
+            <center><p style="font-size: 50px; margin: 0; padding: 10px 0;">About</p></center>
+            <div class="about-content">
+                    <div class="side-image">
+                        <img class="sideImage" src="https://media.licdn.com/dms/image/D5612AQGETBPOz1kvjA/article-cover_image-shrink_600_2000/0/1689163732204?e=2147483647&v=beta&t=6KzU1IIgyUooXQXvWfC2SITppPfYRic99LpykZYQuvg">
+                    </div>
+                    <div class="side-text">
+                        <h2>What to expect from us?</h2>
+                        <p>A few dedicated professors working in different colleges and institutes throughout India are behind the scenes and on stage with us on this endeavor. A good teacher, in our opinion, is one who is knowledgeable about the subject, tries to comprehend the pupils, models a positive behavior for them, and shows concern for their education via words and deeds. This is a location where you may meet and engage with a live tutor to work through difficulties and complete exercises; as a result, you can get instructor support whenever it's convenient for you.<br>
+                            TEACHER ASSISTANCE AT YOUR DOOR-STEP!
+                            </p>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function scrollAppear() {
+        var sideText = document.querySelector('.side-text');
+            var sideImage = document.querySelector('.side-image');
+
+            var sideTextPosition = sideText.getBoundingClientRect().top;
+            var sideImagePosition = sideImage.getBoundingClientRect().top;
+
+            var screenHeight = window.innerHeight;
+
+            if (sideTextPosition < screenHeight) {
+                sideText.classList.add('side-text-appear');
+            }
+
+            if (sideImagePosition < screenHeight) {
+                sideImage.classList.add('sideImage-appear');
+            }
+        }
+
+
+      window.addEventListener('scroll', scrollAppear);
+</script>
+
+    <div id="portfolio_section"></div>
+    <div class="diffSection" id="portfolio_section">
+		<center><p style="font-size: 50px; padding: 100px; padding-bottom: 40px;">Portfolio</p></center>
+		<div class="content">
+			<p>
+				Education is the key to the future as those who prepare for it now will own it in the future. Your height will be determined by your attitude rather than your skill. Try ignorance if you believe that education is costly. The only one who qualifies as educated is the one who understands how to adapt and grow.
+			</p>
+		</div>
+	</div>
+    <br>
+	<div class="extra">
+		<p>We're increasing this data every year</p>
+		<div class="smbox">
+		<span><center><div class="data">4823</div><div class="det">Enrolled Students</div></center></span>
+		<span><center><div class="data">745</div><div class="det">Total Courses</div></center></span>
+		<span><center><div class="data">245</div><div class="det">Placed Students</div></center></span>
+		<span><center><div class="data">5438</div><div class="det">Total Projects</div></center></span>
+		</div>
+	</div>
+
+
+    <div id="team_section"></div>
+    <div class="diffSection" id="team_section">
+		<center><p style="font-size: 50px; padding-top: 100px; padding-bottom: 60px;">We're the Creators</p></center>
+		<div class="totalcard">
+			<div class="card">
+				<center><img src="C:\Users\HP\OneDrive - sicsr.ac.in\Desktop\website3\LearnEd_E-learning_Website-master\NowProfessor\Arrizen.jpg"></center>
+				<center><div class="card-title">Arrizen Kaur</div>
+				<div id="detail">
+					<p>“ You can teach a student a lesson for a day; but if you can teach him to learn by creating curiosity, he will continue the learning process as long as he lives.“</p>
+					<div class="duty"></div>
+					<a href="https://www.linkedin.com/in/arrizen-kaur-444b112ba/" target="_blank"><center><button class="btn-roshan">Follow +</button></center></a>
+				</div>
+				</center>
+			</div>
+			<div class="card">
+				<center><img src="C:\Users\HP\OneDrive - sicsr.ac.in\Desktop\website3\LearnEd_E-learning_Website-master\NowProfessor\Aayushi.jpg"></center>
+				<center><div class="card-title">Aayshi Gupta</div>
+				<div id="detail">
+					<p>“Knowledge is not merely acquired through lectures and textbooks; it thrives when curiosity is sparked, driving a perpetual quest for understanding.“</p>
+					<div class="duty"></div>
+					<a href="www.linkedin.com/in/ayushi-gupta-444a07264/" target="_blank"><center><button class="btn-akhil">Follow +</button></center></a>
+				</div>
+				</center>
+			</div>
+            <div class="card">
+				<center><img src="C:\Users\HP\OneDrive - sicsr.ac.in\Desktop\website3\LearnEd_E-learning_Website-master\NowProfessor\Shravani.jpg"></center>
+				<center><div class="card-title">Shravani Mane</div>
+				<div id="detail">
+					<p>“True education extends beyond the classroom, unraveling the innate potential within each student."<br><br><br><br></p>
+					<div class="duty"></div>
+					<a href="https://www.linkedin.com/in/shravani-mane-96aa78253/" target="_blank"><center><button class="btn-roshan">Follow +</button></center></a>
+				</div>
+				</center>
+			</div>
+            <div class="card">
+				<center><img src="C:\Users\HP\OneDrive - sicsr.ac.in\Desktop\website3\LearnEd_E-learning_Website-master\NowProfessor\Shruti.jpg"></center>
+				<center><div class="card-title">Shruti Godbole</div>
+				<div id="detail">
+					<p>“ Real education should consist of drawing the goodness of our own students. What better books can there be than the book of humanity.“<br><br></p>
+					<div class="duty"></div>
+					<a href="https://www.linkedin.com/in/shruti-godbole-3b9a76266/" target="_blank"><center><button class="btn-akhil">Follow +</button></center></a>
+				</div>
+				</center>
+			</div>
+		</div>
+	</div>
+    <div id="contactus_section"></div>
+    <div id="makeitfull">
+    </div>
+    <div class="review">
+        <div class="diffSection" id="review_section">
+            <center><p style="font-size: 40px; padding: 100px; padding-bottom: 40px; color: #2E3D49;">What the Students Say About Us?</p></center>
+        </div>
+        <div class="rev-container">
+            <div class="rev-card">
+                <div class="identity">
+                    <img src="https://static.wixstatic.com/media/9cc175_b948cd3696bc464da6d2922a5d962fad~mv2.jpg/v1/fill/w_504,h_390,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/9cc175_b948cd3696bc464da6d2922a5d962fad~mv2.jpg"><p>Rohan Patel</p>
+                    <h6>Java</h6>
+                    <div class="rating"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"></div>
+                </div>
+                <div class="rev-cont">
+                    <p id="title">Review:</p>
+                    <p id="content">
+                        I did Java Fundamenetal course with Rishab Sir. It was a great experience. The brain teasers and assignments, actually the whole lot of content was really good. Some problems were challenging yet interesting. Was explained very well where ever I stuck.
+                    </p>
+                </div>
+            </div>
+            <div class="rev-card">
+                <div class="identity">
+                    <img src="https://startup.info/wp-content/uploads/2020/11/Sneha-Sharma-TUBBR.jpg"><p>Sneha Sharma</p>
+                    <h6>C/C++</h6>
+                    <div class="rating"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"></div>
+                </div>
+                <div class="rev-cont">
+                    <p id="title">Review:</p>
+                    <p id="content">
+                        When I was watching "Dear Zindagi", I could relate Sharukh Khan to Arnav Bhaiya. The way Sharukh Khan was giving life lessons to Alia Bhatt, in the same way Arnav Bhaiya will give coding life lessons which will guide you throughout your code life.
+                    </p>
+                </div>
+            </div>
+            <div class="rev-card">
+                <div class="identity">
+                    <img src="https://qph.cf2.quoracdn.net/main-thumb-383721348-200-wliphdcuymmmqzzxussjwyoyoypurjkx.jpeg"><p>Aarav Gupta</p>
+                    <h6>JEE</h6>
+                    <div class="rating"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"></div>
+                </div>
+                <div class="rev-cont">
+                    <p id="title">Review:</p>
+                    <p id="content">
+                        LearnEd was an amazing experience for me. I belong to electronics department and had a little experience in coding but I think it has helped me think things through in a much more analytical manner. Coding is important no matter which branch you are in. It gives you a better understanding about how to approach a problem.
+                    </p>
+                </div>
+            </div>
+            <div class="rev-card">
+                <div class="identity">
+                    <img src="https://images.firstpost.com/wp-content/uploads/large_file_plugin/2018/11/1541832338_niharika380.jpg?im=FitAndFill=(596,336)"><p>Niharika Singh</p>
+                    <h6>Python</h6>
+                    <div class="rating"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"><img src="images/icon/star.png"></div>
+                </div>
+                <div class="rev-cont">
+                    <p id="title">Review:</p>
+                    <p id="content">
+                        This was my first complete course at coding blocks. I attended the Python course in Winter 2020 and loved it which made me join the full course. Shubham bhaiya and Ayush Bhaiya(TA) have good knowledge about the field and were very helpful in making us understand the concepts. I would certainly recommend this to anyone.
+                    </p>
+                </div>
+            </div>
+            <center><h3><i>And hundred more success stories!</i></h3></center>
+        </div>
+    </div>
+
+    <div id="feedback_section"></div>
+    <div class="faq">
+        <center><p style="font-size: 50px; padding-top: 100px; padding-bottom: 60px;">FAQs</p></center>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleAnswer('answer1')">What is the NowProfessor?<span class="dropdown-arrow">⮛</span></div>
+          <div id="answer1" class="faq-answer">
+            Teenagers started the NowProfessor project, where we provide more than 1000 free online courses in cutting-edge technology and have successfully recruited more than 10 lakh students in all subject areas. We provide classes for kids all the way up to high school.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleAnswer('answer2')">Why should I choose NowProfessor?<span class="dropdown-arrow">⮛</span></div>
+          <div id="answer2" class="faq-answer">
+            Because of the superb quality of the learning content, NowProffesor is a great option for free courses with certifications. The courses are excellent for helping learners choose what would work best for their professional objectives since they are well-designed, provide an excellent learning experience, and are interactive and interesting.<br>
+            The advantages of selecting us are as follows:<br>
+            Industry-Relevant Curriculum: All of NowProffesor's free courses include a curriculum that is pertinent to the industry, preparing students for the occupations of the future. <br>
+            Interactive Demos: Interactive demos are a fantastic method for teaching students about technology. <br>
+            Live Sessions Taught by Renowned Industry Experts: Not many courses have live sessions led by internationally recognized industry experts.<br>
+            Certificates of Course Completion: NowProffesor offers certificates of completion to students who have successfully completed any course.<br>  
+          </div>
+
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleAnswer('answer3')">Are there any fees associated with enrolling in these courses?<span class="dropdown-arrow">⮛</span></div>
+          <div id="answer3" class="faq-answer">
+            Learners may access all course materials and lectures without having to pay extra for any of the NowProfessor-affiliated courses, which are all totally free.
+          </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer('answer3')">How will I get the course completion certificate?<span class="dropdown-arrow">⮛</span></div>
+            <div id="answer3" class="faq-answer">
+                Each course contains an assignment or quiz. The course completion certificate will be accessible in your dashboard in less than a day after you finish the quiz and assignment.
+            </div>
+          </div>
+      </div>
+      
+      <script>
+      function toggleAnswer(id) {
+        var answer = document.getElementById(id);
+        answer.classList.toggle("show");
+      }
+      </script>
+
+
+      <br> <br> <br> 
+    <div class="line"></div>
+
+
+      <footer>
+    <div class="footer-container">
+        <div class="left-col">
+            <img src="C:\Users\Neelam\Desktop\NowProfessor\Logo.png" style="width: 100px;">
+            <div class="logo"></div>
+            <div class="social-media">
+                <a href="https://www.facebook.com" target="_blank">
+            <img src="https://i.pinimg.com/736x/7c/cb/40/7ccb40e2fa23d39346cc9dc8691d68b3.jpg" alt="Facebook page" width="20" height="17">
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="https://e7.pngegg.com/pngimages/640/645/png-clipart-instagram-icon-computer-icons-instagram-logo-area.png" alt="Instagram page" width="25" height="17">
+                <a href="https://www.twitter.com" target="_blank">
+                    <img src="https://i.pinimg.com/736x/2f/b9/09/2fb909b74a854f0715e64dda5825990d.jpg" alt="X page" width="30" height="17">
+				</a></div>
+            <h4 class="rights-text"><a href="T&C.html" target="_blank">Terms and Conditions.</a><br>Created By Arrizen Kaur, Aayushi Gupta,<br>Shravani Mane, Shruti Godbole.<br>All Rights Reserved.</h4>
+            <h4>Symbiosis Institute of Computer Studies and Research<br>Model Colony, Pune</h4>
+    
+            <div>ind@nowprofessor.in</div>
+        </div>
+        <div class="right-col">
+            <h2 style="color: #fff">Our Newsletter</h2>
+            <div class="border"></div>
+            <h4>Enter Your Email to get our News and updates.</h4>
+            <form class="newsletter-form">
+                <input class="txtb" type="email" placeholder="someone@mail.com">
+                <input class="btn" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

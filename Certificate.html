@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate issue</title>
+    <style>
+        body, h1, p, button, input {
+            background-color: #3EA99F;
+            margin: 0;
+            padding: 0;
+            border: none;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #00563f;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo img {
+            height: 60px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar {
+            flex: 1;
+            margin: 0 100px;
+            position: relative;
+        }
+
+        .search-bar input[type="text"] {
+            width: calc(100% - 40px);
+            padding: 8px 30px 8px 10px;
+            border-radius: 20px;
+            border: 1px solid #000000;
+            background-color: #ffffffc2;
+            font-size: 14px;
+        }
+
+        .search-bar img {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            width: 16px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .browse {
+            display: flex;
+        }
+
+        .browse .browse-btn {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin-right: 10px;
+        }
+
+        .browse .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #3EA99F;
+            min-width: 160px;
+            z-index: 1;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .browse .dropdown a {
+            color: whitesmoke;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .browse .dropdown a:hover {
+            background-color: #00563f;
+        }
+
+        .browse:hover .dropdown {
+            display: block;
+        }
+
+        .user-controls button {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-controls button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .button {
+            background-color: transparent;
+            color: white;
+            border: 4px solid #00563f;
+            padding: 10px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .button:hover {
+            background-color: rgba(6, 138, 65, 0.295);
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .head-container {
+	          margin-top: 70px;
+	          display: flex;
+	          flex-wrap: wrap;
+	          align-items: center;
+	          justify-content: space-around;
+            }
+
+
+        .registration-form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .registration-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #f8eeee83;
+        }
+
+        .form-group input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 12px;
+            background-color: #00563f;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #3EA99F;
+        }
+        .form-group input[type="submit"]:focus {
+            outline: none;
+        }
+
+        .checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.checkbox-label a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-btn {
+        font-size: 18px;
+        text-align: center;
+        padding: 10px 20px;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+        footer {
+    color: #E5E8EF;
+    background: #000D;
+    padding: 50px 0;
+}
+
+footer .footer-container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+}
+
+footer .social-media img {
+    width: 22px;
+}
+
+footer .logo {
+    width: 180px;
+    color: #fff;
+}
+
+footer .social-media a {
+    margin-right: 10px;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+footer .right-col h1 {
+    font-size: 26px;
+    color: #fff;
+}
+
+footer .border {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #FA4B37, #DF2771);
+    margin: 2px;
+}
+
+footer .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer input::placeholder {
+    color: white !important;
+}
+
+footer .txtb {
+    flex: 1;
+    padding: 18px 40px;
+    font-size: 16px;
+    background: #343A40;
+    border: none;
+    font-weight: 700;
+    outline: none;
+    border-radius: 5px;
+    min-width: 260px;
+    margin-top: 20px;
+    color: white;
+}
+
+footer .btn {
+    margin-top: 20px;
+    padding: 18px 40px;
+    font-size: 16px;
+    color: #f1f1f1;
+    background: linear-gradient(to right, #FA4B37, #DF2771);
+    border: none;
+    font-weight: 700;
+    outline: none;
+    border-radius: 5px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: opacity .3s linear;
+}
+
+footer .btn:hover {
+    opacity: .7;
+}
+
+.footer-line {
+  border-top: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.h4 {
+    color: white;
+}
+
+.line {
+            width: 100%;
+            height: 5px;
+            background-color: #00563f;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <a href="NowProfessor.html"><img src="C:\Users\Neelam\Desktop\NowProfessor\Logo.png" alt="NowProfessor"></a>
+        </div>
+        <div class="search-bar">
+          <input id="search-box" type="text" class="form-control search-box" value="" placeholder="Search Courses" autocomplete="off" required="">           
+                      <img src="https://static-00.iconduck.com/assets.00/search-icon-2048x2048-3akpq6z9.png" class="search-icon" alt="Search icon" title="Search icon" onclick="search()">
+        </div>
+        <script>
+    function search() {
+        var searchTerm = document.getElementById('search-box').value;
+        console.log('Searching for: ' + searchTerm);
+        window.location.href = 'search-results.html?query=' + encodeURIComponent(searchTerm);
+    }
+
+    document.getElementById("search-box").addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            search();
+        }
+    });
+</script>
+        <div class="browse">
+          <button class="browse-btn">Browse</button>
+          <div class="dropdown">
+              <a href="Playlist.html">HTML tutorial</a>
+              <a href="Playlist.html">CSS tutorial</a>
+              <a href="Playlist.html">JS tutorial</a>
+              <a href="Playlist.html">Boostrap tutorial</a>
+              <a href="Playlist.html">JQuery tutorial</a>
+              <a href="Playlist.html">SASS tutorial</a>
+            </div>
+          </div>
+
+        <div class="user-controls">
+            <button onclick="window.location.href = 'Login.html';">Login</button>
+            <button onclick="window.location.href = 'Signup.html';">Sign up</button>
+            <button onclick="window.location.href = 'Contactus.html';">📞</button>
+        </div>
+    </header>
+    <hr>
+    <br> <br>
+    <div class="registration-form">
+        <h2>Student Certificate Issue</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Choose the subject:</label>
+                <div class="dropdown">
+                    <button class="dropdown-btn"><span style="font-size: 18px;">Select Subject⮛</span></button>
+                    <div class="dropdown-content">
+                        <a href="Playlist.html">HTML tutorial</a>
+              <a href="Playlist.html">CSS tutorial</a>
+              <a href="Playlist.html">JS tutorial</a>
+              <a href="Playlist.html">Boostrap tutorial</a>
+              <a href="Playlist.html">JQuery tutorial</a>
+              <a href="Playlist.html">SASS tutorial</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Enter your password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <div class="checkbox-label">
+                    <input type="checkbox" id="agree">
+                    <label for="agree">I agree to the <a href="file:///C:/Users/Neelam/Desktop/NowProfessor/T%26C.html" target="_blank">Terms & Conditions</a>and have successfully completed the course.</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+
+
+    <br> <br> <br> 
+    <div class="line"></div>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="left-col">
+                <img src="C:\Users\Neelam\Desktop\NowProfessor\Logo.png" style="width: 100px;">
+                <div class="logo"></div>
+                <div class="social-media">
+                    <a href="https://www.facebook.com" target="_blank">
+                <img src="https://i.pinimg.com/736x/7c/cb/40/7ccb40e2fa23d39346cc9dc8691d68b3.jpg" alt="Facebook page" width="20" height="17">
+                <a href="https://www.instagram.com" target="_blank">
+                    <img src="https://e7.pngegg.com/pngimages/640/645/png-clipart-instagram-icon-computer-icons-instagram-logo-area.png" alt="Instagram page" width="25" height="17">
+                    <a href="https://www.twitter.com" target="_blank">
+                        <img src="https://i.pinimg.com/736x/2f/b9/09/2fb909b74a854f0715e64dda5825990d.jpg" alt="X page" width="30" height="17">
+                    </a></div>
+                <h4 class="rights-text"><a href="T&C.html" target="_blank">Terms and Conditions.</a><br>Created By Arrizen Kaur, Aayushi Gupta,<br>Shravani Mane, Shruti Godbole.<br>All Rights Reserved.</h4>
+                <h4>Symbiosis Institute of Computer Studies and Research<br>Model Colony, Pune</h4>
+        
+                <div>ind@nowprofessor.in</div>
+            </div>
+            <div class="right-col">
+                <h2 style="color: #fff">Our Newsletter</h2>
+                <div class="border"></div>
+                <h4>Enter Your Email to get our News and updates.</h4>
+                <form class="newsletter-form">
+                    <input class="txtb" type="email" placeholder="someone@mail.com">
+                    <input class="btn" type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </footer>
+    </body>
+    </html>
